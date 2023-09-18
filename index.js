@@ -15,11 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const dbPassword = process.env.DB_PASSWORD;
 
-// const client = new Client({
-//   password: dbPassword,
-//   host: 'localhost',
-//   user: 'postgres',
-// });
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
