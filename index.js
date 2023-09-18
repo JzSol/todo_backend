@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const dbPassword = process.env.DB_PASSWORD;
+// const dbPassword = process.env.DB_PASSWORD;
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
