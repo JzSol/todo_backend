@@ -5,7 +5,6 @@ import pg from 'pg';
 import { v4 as uuidv4 } from 'uuid';
 const { Client } = pg;
 import dotenv from 'dotenv';
-import { timeStamp } from 'console';
 dotenv.config();
 
 const app = express();
