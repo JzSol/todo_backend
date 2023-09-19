@@ -5,6 +5,7 @@ import pg from 'pg';
 import { v4 as uuidv4 } from 'uuid';
 const { Client } = pg;
 import dotenv from 'dotenv';
+import { timeStamp } from 'console';
 dotenv.config();
 
 const app = express();
@@ -57,8 +58,8 @@ app.post('/', async (req, res) => {
   const id = uuidv4();
 
   const addResult = await client.query(
-    'INSERT INTO "LasmaTodo" (id, title, deadline) VALUES ($1, $2, $3)',
-    [id, title, deadline]
+    'INSERT INTO "LasmaTodo" (id, title, deadline, timestamp) VALUES ($1, $2, $3, $4)',
+    [id, title, deadline, new Date().toISOString()]
   );
 
   const newTodo = {
@@ -131,6 +132,8 @@ app.patch('/todos/:todoId', async (req, res) => {
     updateFields.push('info = $' + (updateFields.length + 1));
     values.push(info);
   }
+  updateFields.push('timestamp = $' + (updateFields.length + 1));
+  values.push(new Date().toISOString());
 
   // Use the existing 'completed' status if one is not provided
   const completedStatus =
